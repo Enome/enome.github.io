@@ -36,7 +36,7 @@ var Drag = React.createClass({
 
 First of all you need to set `draggable='true'` on the element you want to drag. If you are dragging selected text, images or links you don't need the set the attribute since those elements are draggable by default. This means that we need to handle those types inside our drop event (more below).
 
-The next step is to define an onDragStart event and handler. For transfering the data we are using [DataTransfer](https://developer.mozilla.org/en-US/docs/Web/API/DataTransfer) object which all related events will be able to access. The first parameter of `setData` is the type, we set it to `text`. Because we are passing a string we need to stringify our object with `JSON.stringify`.
+The next step is to define an onDragStart event and handler. For transferring the data we are using [DataTransfer](https://developer.mozilla.org/en-US/docs/Web/API/DataTransfer) object which all related events will be able to access. The first parameter of `setData` is the type, we set it to `text`. Because we are passing a string we need to stringify our object with `JSON.stringify`.
 
 #### Custom types
 
@@ -55,15 +55,18 @@ While this seems to work in Chrome and Firefox it doesn't work in Internet Explo
 var Drop = React.createClass({
 
   /* LOGIC */
-
   preventDefault: function (event) {
     event.preventDefault();
   },
 
   drop: function (event) {
 
+    event.preventDefault();
+
+    var data;
+
     try {
-      var data = JSON.parse(event.dataTransfer.getData('text'));
+      data = JSON.parse(event.dataTransfer.getData('text'));
     } catch (e) {
       // If the text data isn't parsable we'll just ignore it.
       return;
@@ -75,7 +78,6 @@ var Drop = React.createClass({
   },
 
   /* RENDER */
-
   render: function () {
     return (
       <div onDragOver={this.preventDefault} onDrop={this.drop}>
@@ -89,7 +91,7 @@ var Drop = React.createClass({
 
 First we need to define the `onDragOver` event and handler and call `event.preventDefault()`. If you don't do this the drop event will **never fire** in Chrome which seems to be a [bug](https://code.google.com/p/chromium/issues/detail?id=168387).
 
-Next you have to define `onDrop` which will handle the drop event. The `getData` method is returning our object as a JSON string so we need to parse it back to an object. Also since our drop component can also take other draggable objects we need to try/catch the `JSON.parse` method. For example if somebody drops a file or link onto our component we want it to just ignore it (or show a UI warning if you are feeling fancy).
+Next you have to define `onDrop` which will handle the drop event. The `getData` method is returning our object as a JSON string so we need to parse it back to an object. And since our drop component can also take other draggable objects we need to try/catch the `JSON.parse` method. For example if somebody drops a file or link onto our component we want it to just ignore it (or show a UI warning if you are feeling fancy). Calling `event.preventDefault()` makes sure that the browser doesn't try and open the file or custom element.
 
 ### The demo  
 
@@ -137,7 +139,7 @@ var Drop = React.createClass({
 });
 {% endhighlight %}
 
-This is useful if you want to access the same instance of an object in your drop handler or if your object has methods which wont get serialized by `JSON.stringify`.
+This is useful if you want to access the same instance of an object in your drop handler or if your object has methods which won't get serialized by `JSON.stringify`.
 
 <link href='{{site.url}}/assets/dnd/index.css' rel='stylesheet' />
 <script src='http://fb.me/react-0.9.0.min.js'></script>

@@ -37,6 +37,8 @@ var Drop = React.createClass({
 
   drop: function (event) {
 
+    event.preventDefault();
+
     var data;
 
     try {
