@@ -1,0 +1,19 @@
+.drop, .drag { 
+  width: 50px; 
+  height: 50px; 
+  line-height: 50px;
+  text-align: center;
+  font-size: 12px;
+}
+
+.drag {
+  background: silver;
+  border-radius: 50%;
+  margin: 20px 0;
+  cursor: pointer;
+}
+
+.drop {
+  background: gray;
+  margin-bottom: 20px;
+}
