@@ -34,9 +34,9 @@ var Drag = React.createClass({
 });
 {% endhighlight %}
 
-First of all you need to set `draggable='true'` on the element you want to drag. If you are dragging selected text, images or links you don't need the set the attribute since those elements are draggable by default. This means that we need to handle those types inside our drop event (more below).
+First of all you need to set `draggable='true'` on the element you want to drag. If you are dragging selected text, images or links you don't need the set the attribute since those elements are draggable by default. This also means that we need to handle those types inside our drop event (more below).
 
-The next step is to define an onDragStart event and handler. For transferring the data we are using [DataTransfer](https://developer.mozilla.org/en-US/docs/Web/API/DataTransfer) object which all related events will be able to access. The first parameter of `setData` is the type, we set it to `text`. Because we are passing a string we need to stringify our object with `JSON.stringify`.
+The next step is to define an `onDragStart` event and handler. For transferring the data we are using [DataTransfer](https://developer.mozilla.org/en-US/docs/Web/API/DataTransfer) object which all related events will be able to access. The first parameter of `setData` is the type, we set it to `text`. Because we are passing a string we need to stringify our object with `JSON.stringify`.
 
 #### Custom types
 
