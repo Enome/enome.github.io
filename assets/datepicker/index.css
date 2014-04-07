@@ -1,0 +1,39 @@
+.days {
+  height: 100px;
+  overflow: hidden;
+  border: 1px solid black;
+  margin: 10px 0;
+}
+
+.day {
+  cursor: pointer;
+  height: 20px;
+  line-height: 20px;
+  font-size: 12px;
+  padding: 0 5px;
+  color: silver;
+  border-bottom: 1px solid #cccccc;
+
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+}
+
+.day:hover {
+  color: black;
+}
+
+.day.selected {
+  background: #EEEEEE; 
+  color: black;
+}
+
+.day:last-child {
+  border: none 0;
+}
+
+button {
+ padding: 3px;
+ margin-right: 5px;
+}
