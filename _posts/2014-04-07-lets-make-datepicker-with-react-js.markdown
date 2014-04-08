@@ -1,13 +1,13 @@
 ---
 layout: post
 title:  'Lets make a datepicker with React.js'
-date:   2014-04-07
+date:   2014-04-08
 categories: javascript
 ---
 
-For a project I am working I need to create a <a href='/assets/datepicker/datepicker.jpg'>datepicker (mockup)</a> for touch devices. In this post we will be focusing on **infinite scrolling** since that's the most interesting problem to solve. We'll also make it vertical instead of horizontal which simplifies the [css]({{site.url}}/assets/datepicker/index.css) a little (no floats or flexbox).
+For a project I am working on I need to create a <a href='/assets/datepicker/datepicker.jpg'>datepicker (mockup)</a> for touch devices. In this post we will be focusing on **infinite scrolling** since that's the most interesting problem to solve. We'll also make it vertical instead of horizontal which simplifies the [css]({{site.url}}/assets/datepicker/index.css) a little (no floats or flexbox).
 
-If you just want to see a **demo** skip to the bottom of the page.
+If you just want to see the **demo**, skip to the bottom of the page.
 
 ## The setup
 
@@ -15,7 +15,7 @@ We'll be using the following sizes:
 
 <img src='/assets/datepicker/measurements.png' alt='measurements' />
 
-If we translate this to html and css it looks something like this:
+If we translate this to html and css, it looks something like this:
 
 ```html
 <div class='datepicker'>
@@ -48,7 +48,7 @@ var Datepicker = React.createClass({
 
 <small>I am using a few helper methods I created for moment.js in this example. You can find the code over [here]({{site.url}}/assets/datepicker/dates.js).</small>
 
-In this case when our component starts it will create a range of 5 dates with the today date as the third item.
+In this case when our component starts, it will create a range of 5 dates with the today date as the third item.
 
 
 Lets define our render method next and hook up some events and handlers.
@@ -56,8 +56,7 @@ Lets define our render method next and hook up some events and handlers.
 ```js
 
 /* LOGIC */
-scrollTo: function (date) {
-  
+scrollTo: function (date) {  
 },
 
 /* RENDER */
@@ -114,11 +113,10 @@ scrollTo: function (date) {
   if (date.isBefore(this.state.current)) {
     this.up(date);
   }
-
 },
 ```
 
-I decided to put `up` and `down` into their own methods you don't have to do that but it helps to keep all the methods relatively small which mostly means they are easier to test. Lets implement `down` first.
+I decided to put `up` and `down` into their own methods. You don't have to do that, but it helps to keep all the methods relatively small which mostly means they are easier to test. Lets implement `down` first.
 
 ### Going down
 
@@ -126,7 +124,7 @@ Lets say we have the following scenario:
 
 <img src='{{site.url}}/assets/datepicker/down1.png' />
 
-We are currently selecting the **3rd** of January and we want to scroll to the **5th**. Before we can start scrolling to the **5th** we also need the have the rows that contain the **6th** and **7th** of January in our DOM tree.
+We are currently selecting the **3rd** of January and we want to scroll to the **5th**. Before we can start scrolling to the **5th** we also need to have the rows that contain the **6th** and **7th** of January in our DOM tree.
 
 <img src='{{site.url}}/assets/datepicker/down2.png' />
 
@@ -151,7 +149,7 @@ We end up with the following result:
 
 <img src='{{site.url}}/assets/datepicker/down3.png' />
 
-Now that our rows are added and the date we are scrolling to is highlighted the next step will be to move our `div.wrapper` 40 pixels up so the new date is in the middle again. 
+Now that our rows are added and the date we are scrolling to is highlighted, the next step will be to move our `div.wrapper` 40 pixels up so the new date is in the middle again. 
 
 <img src='{{site.url}}/assets/datepicker/down4.gif' />
 
@@ -180,7 +178,7 @@ We also need to access the DOM node of our wrapper element:
 var wrapper = this.refs.wrapper.getDOMNode();
 ```
 
-Now that we have that reference and we know how many pixels we need to move up we can add our animation.
+Now that we have that reference and we know how many pixels we need to move up, we can add our animation.
 
 First step of the animation is to clear the transition and reset the position of our wrapper. If you don't do this you'll get weird bouncy animations from previous scrolls styles on the wrapper element.
 
@@ -190,7 +188,7 @@ wrapper.style.transition = 'none';
 wrapper.style.transform = 'translate(0, 0)';
 ```
 
-<small>You could also use margins instead of transformations but the latter will use hardware acceleration. This [this blog post](http://blog.alexmaccaw.com/css-transitions) has a lot of information about css transitions.</small>
+<small>You could also use margins instead of transformations but the latter will use hardware acceleration. This [blog post](http://blog.alexmaccaw.com/css-transitions) has a lot of information about css transitions.</small>
 
 Next we can add the transition again and set the destination of our wrapper.
 
@@ -201,7 +199,7 @@ setTimeout(function () {
 }, 0);
 ```
 
-<small>You need to do this inside a `setTimeout` otherwise it's instantaneous and the browser wont pick up on the changes.</small>
+<small>You need to do this inside a `setTimeout` otherwise it's instantaneous and the browser won't pick up on the changes.</small>
 
 Our complete `down` method should look something like the following:
 
