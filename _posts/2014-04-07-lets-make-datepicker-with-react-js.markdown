@@ -7,7 +7,7 @@ categories: javascript
 
 For a project I am working on I need to create a <a href='/assets/datepicker/datepicker.jpg'>datepicker (mockup)</a> for touch devices. In this post we will be focusing on **infinite scrolling** since that's the most interesting problem to solve. We'll also make it vertical instead of horizontal which simplifies the [css]({{site.url}}/assets/datepicker/index.css) a little (no floats or flexbox).
 
-If you just want to see the **demo**, skip to the bottom of the page.
+If you just want to see the **demo**, [skip](#demo) to the bottom of the page.
 
 ## The setup
 
@@ -263,7 +263,7 @@ up: function (date) {
 
 <br />
 
-### The demo
+<h3 id='demo'>The demo</h3>
 
 You can find the code [here]({{site.url}}/assets/datepicker/index.js). The demo has extra buttons to show how flexible `scrollTo` is and an extra `animate` method to deal with cross browser transitions and transforms.
 
