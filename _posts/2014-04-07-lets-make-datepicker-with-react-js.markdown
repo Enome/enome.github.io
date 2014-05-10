@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  'Lets make a datepicker with React.js'
+title:  "Let's make a datepicker with React.js"
 date:   2014-04-08
 categories: javascript
 ---
